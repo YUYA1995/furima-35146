@@ -21,7 +21,7 @@ has_many :comments
 belongs_to :user
 has_many   :comments
 
-## 購入者 テーブル
+## comments テーブル
 | Column     | Type       |  Option  |
 | ---------- | ---------- | -------- |
 | text       | text       | NOT NULL |
