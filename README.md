@@ -1,24 +1,30 @@
-# README
+## users テーブル
+| Column     | Type    |  Option     |
+| ---------- | ------- | ----------- |
+| email      | string  |  NOT NULL   |
+| password   | string  |  NOT NULL   |
+| name       | string  |  NOT NULL   |
+| nickname   | string  |  NOT NULL   |
+| birthday   | string  |  NOT NULL   |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+has_many :items
+has_many :comments
 
-Things you may want to cover:
+## items テーブル
+| Column     | Type       |  Option   |
+| ---------- | ---------- | --------  |
+| title      | string     | NOT NULL  | 
+| price      | text       | NOT NULL  |
+| category   | text       | NOY NULL  | 
+| user       | references |           |
 
-* Ruby version
+belongs_to :user
+has_many   :comments
 
-* System dependencies
+## 購入者 テーブル
+| Column     | Type       |  Option  |
+| ---------- | ---------- | -------- |
+| text       | text       | NOT NULL |
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+belongs_to :user
+belongs_to
