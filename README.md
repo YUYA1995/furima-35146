@@ -43,7 +43,7 @@ belongs_to :item
 | item       | references | null: false, foreign_key: true |
 | user       | references | null: false, foreign_key: true |
 
-belongs_to :item
+has_one    :item
 has_one    :orders
 
 
