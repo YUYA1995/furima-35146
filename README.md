@@ -5,8 +5,8 @@
 | encrypted_password   | string  |  null: false             |
 | last_name            | string  |  null: false             |
 | first_name           | string  |  null: false             |
-| last_name(kana)      | string  |  null: false             |
-| first_name(kana)     | string  |  null: false             |
+| last_name_kana       | string  |  null: false             |
+| first_name_kana      | string  |  null: false             |
 | nickname             | string  |  null: false             |
 | birthday             | date    |  null: false             |
 
@@ -23,7 +23,7 @@ has_many :histories
 | address_id    | integer    | null: false                    |
 | condition_id  | integer    | null: false                    |
 | postage_id    | integer    | null: false                    |
-| explain_id    | integer    | null: false                    |
+| explain       | string     | null: false                    |
 | user          | references | null: false, foreign_key: true |
 belongs_to :user
 has_many   :comments
@@ -45,17 +45,17 @@ belongs_to :item
 
 belongs_to    :item
 has_one       :order
-has_one       :user
+belongs_to    :user
 
 
 ## orders テーブル
-| Column                 | Type       |  Option     |
-| -------------------    | ---------- | ----------- |
-| history                | references | null: false |
-| delivery_postalcode_id | integer    | null: false |
-| delivery_city_id       | integer    | null: false |
-| delivery_state_id      | integer    | null: false |
-| delivery_country_id    | integer    | null: false |
-| delivery_phone_id      | integer    | null: false |
+| Column                 | Type       |  Option                       |
+| -------------------    | ---------- | ----------------------------- |
+| history                | references | null: false foreign_key: true |
+| delivery_postalcode    | string     | null: false                   |
+| delivery_city          | string     | null: false                   |
+| delivery_state         | string     | null: false                   |
+| delivery_phone         | string     | null: false                   |
+| delivery_country_id    | integer    | null: false                   |
 
 belongs_to :history
