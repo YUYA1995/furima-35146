@@ -23,7 +23,7 @@ has_many :histories
 | address_id      | integer    | null: false                    |
 | condition_id    | integer    | null: false                    |
 | postage_id      | integer    | null: false                    |
-| deliver_days_id | integer    | null: false                    |
+| deliver_day_id  | integer    | null: false                    |
 | explain         | text       | null: false                    |
 | user            | references | null: false, foreign_key: true |
 
@@ -58,7 +58,7 @@ belongs_to    :user
 | delivery_city          | string     | null: false                   |
 | delivery_state         | string     | null: false                   |
 | delivery_phone         | string     | null: false                   |
-| delivery_building_id   | string     | null: false                   |
+| delivery_building      | string     |                               |
 | delivery_country_id    | integer    | null: false                   |
 
 belongs_to :history
