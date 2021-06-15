@@ -4,7 +4,23 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   
- describe 'ユーザー新規登録' do
+  describe 'ユーザー新規登録' do 
+    context '新規登録できるとき' do
+      it 'nicknameとemail,passwordとpassword_confirmationが存在すれば登録できる' do
+        expect(@user).to be_valid
+      end
+      it 'nicknameが6文字以下であれば登録できる' do
+        @user.nickname = 'aaaaaa'
+        expect(@user).to be_valid
+      end
+    end
+    context '新規登録できないとき' do
+      it 'passwordとpassword_confirmationが6文字以上であれば登録できる' do
+        @user.password = '000000'
+        @user.password_confirmation = '000000'
+        expect(@user).to be_valid
+      end
+    end
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -15,12 +31,17 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Email can't be blank"
     end
+    it 'emailに@がないと登録できない' do
+      @user.email = 'test.test.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Email is invalid"
+    end
     it '重複したemailが存在する場合登録できない' do
       @user.save
       another_user = FactoryBot.build(:user)
       another_user.email = @user.email
       another_user.valid?
-      expect(another_user.errors.full_messages).to include('Email has already been taken')
+      expect(another_user.errors.full_messages).to include 'Email has already been taken'
     end
     it 'passwordが空では登録できない' do
       @user.password = ''
@@ -103,6 +124,5 @@ end
 #パスワードは、確認用を含めて2回入力すること!
 #ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること!
 #ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること!
-
-#メールアドレスは、@を含む必要があること
-#パスワードは、半角英数字混合での入力が必須であること（半角英数字が混合されていれば、登録が可能なこと）
+#メールアドレスは、@を含む必要があること!
+#パスワードは、半角英数字混合での入力が必須であること（半角英数字が混合されていれば、登録が可能なこと!
