@@ -1,14 +1,13 @@
 class ItemsController < ApplicationController
 
-  #before_action :move_to_index, expect: [:index, :show]
+  before_action :move_to_index, expect: [:index, :show]
 
   def index
-    @items = Item.all
+   # @items = Item.all
   end
 
   def new
-    @item = Item.new 
-    redirect_to root_path unless current_user
+   @item = Item.new 
   end
 
   def create
@@ -30,7 +29,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:title, :product_price, :category_id, :address_id, :condition_id, :postage_id, :deliver_day_id, :explain,).merge(user_id: current_user.id)
   end
 
-  #def move_to_index
-  #  redirect_to new_user_session_path unless user_signed_in?
-  #end
+  def move_to_index
+    redirect_to new_user_session_path unless user_signed_in?
+  end
 end
