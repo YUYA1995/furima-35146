@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :move_to_index, expect: [:index, :show]
+  before_action :move_to_index, expect: [:index]
 
   def index
    # @items = Item.all
@@ -19,9 +19,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    @item = Item.all
-  end
+  #def show
+   # @item = Item.all
+  #end
 
   private
 
