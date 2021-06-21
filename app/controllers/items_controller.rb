@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   def index
     #@images = Image.all
     @items = Item.all
+    @items = Item.order("id DESC")
   end
 
   def new
