@@ -2,8 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create]
 
   def index
-    #@images = Image.all
-    @items = Item.all
     @items = Item.order("id DESC")
   end
 
