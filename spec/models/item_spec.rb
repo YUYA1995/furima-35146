@@ -89,8 +89,8 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include "Product price is not a number"
     end
-    it '販売価格が英数だけでは登録できない' do
-      @item.product_price = 'A1'
+    it '販売価格が英字だけでは登録できない' do
+      @item.product_price = 'A'
       @item.valid?
       expect(@item.errors.full_messages).to include "Product price is not a number"
     end

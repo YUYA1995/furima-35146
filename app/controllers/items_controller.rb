@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-
-  before_action :move_to_index, expect: [:index]
+  before_action :authenticate_user! [:index]
 
   def index
    # @items = Item.all
