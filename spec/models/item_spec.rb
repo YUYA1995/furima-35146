@@ -19,6 +19,11 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include "Explain can't be blank"
     end
+    it '写真が空では登録できない' do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Image can't be blank"
+    end
     it 'カテゴリー情報が空では登録できない' do
       @item.category_id = ''
       @item.valid?
@@ -98,6 +103,11 @@ RSpec.describe Item, type: :model do
       @item.product_price = 10,000,000
       @item.valid?
       expect(@item.errors.full_messages).to include "Product price is not a number"
+    end
+    it 'userが紐付いていないと保存できないこと' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include "User must exist"
     end
   end
 end

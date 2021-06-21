@@ -9,9 +9,10 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :postage
   belongs_to :deliver_day
+  has_one_attached :image
   
   with_options presence: true do
-    validates :title, :explain
+    validates :title, :explain, :image
     validates :category_id, :address_id, :condition_id, :postage_id, :deliver_day_id, numericality: { other_than: 1 }
     validates :product_price, numericality:{only_integer:true, greater_than:300, less_than:9999999 }
   end 
