@@ -90,19 +90,19 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include "Product price is not a number"
     end
     it '販売価格が英数だけでは登録できない' do
-      @item.product_price = 'A'
+      @item.product_price = 'A1'
       @item.valid?
       expect(@item.errors.full_messages).to include "Product price is not a number"
     end
     it '販売価格が299円以下では登録できない' do
       @item.product_price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include "Product price must be greater than 300"
+      expect(@item.errors.full_messages).to include "Product price must be greater than 299"
     end
     it '販売価格が10,000,000円以上では登録できない' do
-      @item.product_price = 10,000,000
+      @item.product_price = 10000000
       @item.valid?
-      expect(@item.errors.full_messages).to include "Product price is not a number"
+      expect(@item.errors.full_messages).to include "Product price must be less than 10000000"
     end
     it 'userが紐付いていないと保存できないこと' do
       @item.user = nil
