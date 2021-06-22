@@ -127,20 +127,18 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
-      <li class='list'>
       <% @items.each do |item| %>
-        <%= link_to items_path(item.id) do %>
-        <div class='item-img-content'>
-          <%= image_tag item.image, class: "item-img" %>
+        <li class='list'>
+          <%= link_to items_path(item.id) do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <%# <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div> %>
-          <%# //商品が売れていればsold outを表示しましょう %>
-
-        </div>
+              <%# 商品が売れていればsold outを表示しましょう %>
+              <%# <div class='sold-out'>
+                  <span>Sold Out!!</span>
+              </div> %>
+              <%# //商品が売れていればsold outを表示しましょう %>
+            </div>
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.title %>
@@ -154,8 +152,8 @@
           </div>
         </div>
         <% end %>
-      <% end %>
       </li>
+    <% end %>
 
       <% if @items.length == 0 %>
       <li class='list'>
@@ -174,8 +172,8 @@
           </div>
         </div>
         <% end %>
-      <% end %>
       </li>
+    <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
