@@ -138,10 +138,8 @@ app/assets/stylesheets/items/new.css %>
     <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <% if user_signed_in? && current_user.id == @item.user_id %>
         <%= f.submit "変更する", class:"sell-btn" %>
         <%=link_to 'もどる', root_path, class:"back-btn" %>%
-      <% end %>
     </div>
     <%# /下部ボタン %>
   </div>
