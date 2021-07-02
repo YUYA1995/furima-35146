@@ -6,5 +6,6 @@ FactoryBot.define do
     delivery_phone       {'12345678910'} 
     delivery_building    {} 
     address_id  { 2 } 
+    token {"tok_abcdefghijk00000000000000000"}
   end
 end

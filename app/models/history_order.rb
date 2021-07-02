@@ -1,10 +1,10 @@
 class HistoryOrder
   include ActiveModel::Model
-  attr_accessor :delivery_postalcode, :delivery_city, :delivery_state, :delivery_phone, :address_id, :delivery_building, :user_id, :item_id, :image
+  attr_accessor :delivery_postalcode, :delivery_city, :delivery_state, :delivery_phone, :address_id, :delivery_building, :user_id, :item_id, :image,  :token
   
   with_options presence: true do
     validates :delivery_postalcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :delivery_city, :delivery_state, :delivery_phone
+    validates :delivery_city, :delivery_state, :delivery_phone, :token
   end
   validates :address_id, numericality: {other_than: 0, message: "can't be blank"}
 
