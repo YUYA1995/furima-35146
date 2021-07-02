@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe HistoryOrder, type: :model do
   before do
-    @order = FactoryBot.build(:history_order)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:history_order, user_id: user.id, item_id: item.id)
+    sleep 0.5
   end
 
   context '内容に問題ない場合' do
@@ -27,6 +30,11 @@ RSpec.describe HistoryOrder, type: :model do
       @order.valid?
       expect(@order.errors.full_messages).to include("Address can't be blank")
     end
+    it "都道府県の選択が0では保存ができないこと" do
+      @order.address_id = 0
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Address can't be blank")
+    end
     it "市区町村が空では保存ができないこと" do
       @order.delivery_city = ''
       @order.valid?
@@ -41,6 +49,21 @@ RSpec.describe HistoryOrder, type: :model do
       @order.delivery_phone = ''
       @order.valid?
       expect(@order.errors.full_messages).to include("Delivery phone can't be blank")
+    end
+    it "user_idが空では保存できないこと" do
+      @order.user_id = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("User can't be blank")
+    end
+    it "item_idが空では保存できないこと" do
+      @order.item_id = ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Item can't be blank")
+    end
+    it "tokenが空では保存できないこと" do
+      @order.token= ''
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Token can't be blank")
     end
   end
 end

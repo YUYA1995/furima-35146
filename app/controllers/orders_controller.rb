@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   end
 
   def create 
-    #binding.pry
     @history_order = HistoryOrder.new(order_params)
     if @history_order.valid? 
        pay_item
@@ -34,7 +33,7 @@ class OrdersController < ApplicationController
   end
   
   def move_to_index
-    if current_user.id == @item.user.id || @history_order.present?
+    if current_user.id == @item.user.id || @item.history.present?
       redirect_to root_path 
     end
   end
