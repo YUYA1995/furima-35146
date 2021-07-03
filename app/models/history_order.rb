@@ -7,7 +7,7 @@ class HistoryOrder
     validates :delivery_city, :delivery_state, :token, :user_id, :item_id
     validates :delivery_phone, format: {with: /\A\d{,11}\z/, message: "is mximum 11"}
   end
-  validates :address_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :address_id, numericality: {other_than: 1, message: "can't be blank"}
 
   def save
     history = History.create(user_id: user_id, item_id: item_id)

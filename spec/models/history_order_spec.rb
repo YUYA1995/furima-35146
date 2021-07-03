@@ -12,6 +12,10 @@ RSpec.describe HistoryOrder, type: :model do
     it "必須項目があれば保存ができること" do
       expect(@order).to be_valid
     end
+    it "建物名は空でも購入できる" do
+      @order.delivery_building = ''
+      expect(@order).to be_valid
+    end
   end
 
   context '内容に問題がある場合' do
@@ -31,7 +35,7 @@ RSpec.describe HistoryOrder, type: :model do
       expect(@order.errors.full_messages).to include("Address can't be blank")
     end
     it "都道府県の選択が0では保存ができないこと" do
-      @order.address_id = 0
+      @order.address_id = 1
       @order.valid?
       expect(@order.errors.full_messages).to include("Address can't be blank")
     end
@@ -51,7 +55,7 @@ RSpec.describe HistoryOrder, type: :model do
       expect(@order.errors.full_messages).to include("Delivery phone can't be blank")
     end
     it "電話番号が11以上では登録できない" do
-      @order.delivery_phone = 123456789101
+      @order.delivery_phone = '123456789101'
       @order.valid?
       expect(@order.errors.full_messages).to include("Delivery phone is mximum 11")
     end
