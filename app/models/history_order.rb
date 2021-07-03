@@ -5,7 +5,7 @@ class HistoryOrder
   with_options presence: true do
     validates :delivery_postalcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :delivery_city, :delivery_state, :token, :user_id, :item_id
-    validates :delivery_phone, format: {with: /\A\d{,11}\z/, message: "is mximum 11"}
+    validates :delivery_phone, format: {with: /\A\d{,11}\z/, message: "is maximum 11"}
   end
   validates :address_id, numericality: {other_than: 1, message: "can't be blank"}
 
