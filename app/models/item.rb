@@ -3,7 +3,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   #has_many   :comments
-  #has_one    :history
+  has_one    :history
   belongs_to :category
   belongs_to :address
   belongs_to :condition
