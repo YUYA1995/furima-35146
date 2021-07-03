@@ -50,6 +50,11 @@ RSpec.describe HistoryOrder, type: :model do
       @order.valid?
       expect(@order.errors.full_messages).to include("Delivery phone can't be blank")
     end
+    it "電話番号が11以上では登録できない" do
+      @order.delivery_phone = 123456789101
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Delivery phone is mximum 11")
+    end
     it "user_idが空では保存できないこと" do
       @order.user_id = ''
       @order.valid?
