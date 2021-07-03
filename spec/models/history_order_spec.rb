@@ -59,6 +59,11 @@ RSpec.describe HistoryOrder, type: :model do
       @order.valid?
       expect(@order.errors.full_messages).to include("Delivery phone is maximum 11")
     end
+    it "電話番号が英数字混合では購入できない" do
+      @order.delivery_phone = '123abc78910'
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Delivery phone is maximum 11")
+    end
     it "user_idが空では保存できないこと" do
       @order.user_id = ''
       @order.valid?
